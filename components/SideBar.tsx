@@ -1,8 +1,26 @@
+'use client'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import React from 'react'
+
 
 const navItems = [
   {
     label: 'Dashboard',
+    link:'/',
+    active:false,
+    icon: (
+      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+        <rect x="3" y="3" width="7" height="7" rx="1" />
+        <rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" />
+        <rect x="14" y="14" width="7" height="7" rx="1" />
+      </svg>
+    ),
+  },
+    {
+    label: 'New student',
+    link:'/new-student',
     active: true,
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -15,6 +33,7 @@ const navItems = [
   },
   {
     label: 'Inbox',
+    link:'/New-student',
     active: false,
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -25,6 +44,7 @@ const navItems = [
   },
   {
     label: 'Lesson',
+    link:'/New-student',
     active: false,
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -37,6 +57,7 @@ const navItems = [
   },
   {
     label: 'Task',
+    link:'/New-student',
     active: false,
     icon: (
       <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
@@ -46,22 +67,23 @@ const navItems = [
       </svg>
     ),
   },
-  {
-    label: 'Group',
-    active: false,
-    icon: (
-      <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-        <circle cx="9" cy="7" r="4" />
-        <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        <path d="M21 21v-2a4 4 0 0 0-3-3.87" />
-      </svg>
-    ),
-  },
+  // {
+  //   label: 'Group',
+  //   active: false,
+  //   icon: (
+  //     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
+  //       <circle cx="9" cy="7" r="4" />
+  //       <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+  //       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  //       <path d="M21 21v-2a4 4 0 0 0-3-3.87" />
+  //     </svg>
+  //   ),
+  // },
 ]
 
 
 const SideBar = () => {
+  const pathName = usePathname()
   return (
     <div className="w-[220px] h-screen bg-white flex flex-col px-5 py-6 border-r border-gray-100 shadow-sm">
 
@@ -82,19 +104,22 @@ const SideBar = () => {
         </p>
         <nav className="flex flex-col gap-1">
           {navItems.map((item) => (
-            <button
+            <Link
+            href={item.link}
+             
+
               key={item.label}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 w-full text-left
-                ${item.active
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-200'
-                  : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800'
+                ${item.link === pathName
+                  ? "bg-indigo-600 text-white shadow-md shadow-indigo-200"
+                  : "text-gray-500 hover:bg-gray-50 hover:text-gray-800"
                 }`}
             >
               <span className={item.active ? 'text-white' : 'text-gray-400'}>
                 {item.icon}
               </span>
               {item.label}
-            </button>
+            </Link>
           ))}
         </nav>
       </div>
