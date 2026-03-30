@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+h1{
+background-attachment: green;
+text-emphasis-color: var(h1);
+}
