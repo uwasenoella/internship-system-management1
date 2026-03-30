@@ -5,6 +5,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Sidebar from "../../components/SideBar";
 import NavBar from "../../components/navbar";
+import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +33,13 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ClerkProvider>
+          <ConvexClientProvider>
           <Sidebar />
           <main className="flex-1">
             <NavBar />
             {children}
           </main>
+          </ConvexClientProvider>
         </ClerkProvider>
       </body>
     </html>
